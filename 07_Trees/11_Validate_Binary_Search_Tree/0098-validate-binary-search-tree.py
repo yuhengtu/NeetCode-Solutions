@@ -20,19 +20,12 @@ The space complexity is O(h), where h is the height of the binary tree. In the w
 
 
 class Solution:
-    def isValidBST(self, root: TreeNode) -> bool:
-        def inorder_traversal(node, prev):
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def dfs(node, low, high):
             if not node:
                 return True
-
-            if not inorder_traversal(node.left, prev):
+            if not low < node.val < high:
                 return False
+            return dfs(node.left, low, node.val) and dfs(node.right, node.val, high)
 
-            if prev[0] is not None and node.val <= prev[0]:
-                return False
-            prev[0] = node.val
-
-            return inorder_traversal(node.right, prev)
-
-        prev = [None]
-        return inorder_traversal(root, prev)
+        return dfs(root, float("-inf"), float("inf"))
