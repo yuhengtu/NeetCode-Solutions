@@ -14,17 +14,21 @@ The space complexity is O(n), where n is the length of the input string 's'. In 
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = []
-        parentheses_map = {")": "(", "}": "{", "]": "["}
+        BACK2FRONT = {
+            "}": "{",
+            ")": "(",
+            "]": "[",
+        }
 
-        for char in s:
-            if char in parentheses_map.values():
-                stack.append(char)
-            elif char in parentheses_map:
-                if not stack or stack[-1] != parentheses_map[char]:
-                    return False
-                stack.pop()
+        paren_stack = []
+        for paren in s:
+            if paren in BACK2FRONT.values():
+                paren_stack.append(paren)
             else:
-                return False
-
-        return not stack
+                front = BACK2FRONT[paren]
+                if (not paren_stack) or (front != paren_stack[-1]):
+                    return False
+                else:
+                    paren_stack.pop()
+        
+        return not paren_stack
