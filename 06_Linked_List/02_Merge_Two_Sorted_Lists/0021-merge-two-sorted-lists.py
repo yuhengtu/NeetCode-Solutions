@@ -8,7 +8,7 @@ Time Complexity:
 The time complexity of this solution is O(n), where n is the total number of nodes in the merged list. We traverse each node once to merge the lists.
 
 Space Complexity:
-The space complexity is O(1), as no extra space is used other than a few variables to keep track of nodes and pointers.
+The space complexity is O(1). We do not allocate new nodes. We reuse the existing nodes and just rearrange links.
 """
 
 # Definition for singly-linked list.
@@ -18,23 +18,29 @@ The space complexity is O(1), as no extra space is used other than a few variabl
 #         self.next = next
 
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
 class Solution:
-    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode()
         current = dummy
 
-        while l1 and l2:
-            if l1.val < l2.val:
-                current.next = l1
-                l1 = l1.next
+        while list1 and list2:
+            if list1.val <= list2.val:
+                current.next = list1
+                list1 = list1.next
             else:
-                current.next = l2
-                l2 = l2.next
+                current.next = list2
+                list2 = list2.next
             current = current.next
-
-        if l1:
-            current.next = l1
-        elif l2:
-            current.next = l2
-
+        
+        if list1:
+            current.next = list1
+        elif list2:
+            current.next = list2
+        
         return dummy.next
