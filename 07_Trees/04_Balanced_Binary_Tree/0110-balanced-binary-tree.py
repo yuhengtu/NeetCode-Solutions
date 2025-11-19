@@ -17,22 +17,21 @@ The space complexity is O(h), where h is the height of the binary tree. In the w
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        self.is_balance = True
+        self.isbalance = True
 
-        def height(root):
-            if not root:
+        def height(node):
+            if not node:
                 return 0
-            
-            left_h = height(root.left)
-            left_r = height(root.right)
 
-            if abs(left_h - left_r) > 1:
-                self.is_balance = False
+            h_l = height(node.left)
+            h_r = height(node.right)
 
-            return max(left_h, left_r) + 1
+            if abs(h_l - h_r) > 1:
+                self.isbalance = False
+
+            return max(h_l, h_r) + 1
 
         height(root)
-        return self.is_balance
+        return self.isbalance
