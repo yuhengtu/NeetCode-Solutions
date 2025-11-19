@@ -19,6 +19,4 @@ class Solution:
             diff = target - num
             if diff in num2index:
                 return [i, num2index[diff]]
-
             num2index[num] = i
-        
