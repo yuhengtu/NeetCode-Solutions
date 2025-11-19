@@ -14,10 +14,10 @@ The space complexity is O(n), as the hash set can potentially store all elements
 
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        hashset = set()
-
-        for n in nums:
-            if n in hashset:
+        seen = set()
+        for num in nums:
+            if num in seen:
                 return True
-            hashset.add(n)
+            else:
+                seen.add(num)
         return False
