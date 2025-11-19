@@ -17,19 +17,14 @@ The space complexity is O(1), as no extra space is used other than a few variabl
 #         self.val = x
 #         self.next = None
 
-
 class Solution:
-    def hasCycle(self, head: ListNode) -> bool:
-        if not head or not head.next:
-            return False
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow, fast = head, head
 
-        slow = head
-        fast = head.next
-
-        while slow != fast:
-            if not fast or not fast.next:
-                return False
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
+            if fast == slow:
+                return True
 
-        return True
+        return False
