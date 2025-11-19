@@ -14,18 +14,17 @@ The space complexity is O(1) since we are not using any additional data structur
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        left, right = 0, len(s) - 1
+        l, r = 0, len(s)-1
+        while l < r:
+            while (not s[l].isalnum()) and (l < r):
+                l += 1
+            while (not s[r].isalnum()) and (l < r):
+                r -= 1
 
-        while left < right:
-            while left < right and not s[left].isalnum():
-                left += 1
-            while left < right and not s[right].isalnum():
-                right -= 1
-
-            if s[left].lower() != s[right].lower():
+            if s[l].lower() != s[r].lower():
                 return False
-
-            left += 1
-            right -= 1
-
+            else:
+                l += 1
+                r -= 1
+                
         return True
