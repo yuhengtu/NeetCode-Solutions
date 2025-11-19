@@ -21,7 +21,7 @@ The space complexity is O(h), where h is the height of the binary tree. In the w
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
-            return None
+            return
             
         root.left, root.right = root.right, root.left
 
