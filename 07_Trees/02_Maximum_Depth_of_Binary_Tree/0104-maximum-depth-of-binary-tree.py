@@ -17,14 +17,14 @@ The space complexity is O(h), where h is the height of the binary tree. In the w
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
-
 class Solution:
-    def maxDepth(self, root: TreeNode) -> int:
-        if not root:
-            return 0
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        def height(node):
+            if not node:
+                return 0
+            
+            h_l = height(node.left)
+            h_r = height(node.right)
 
-        left_depth = self.maxDepth(root.left)
-        right_depth = self.maxDepth(root.right)
-
-        return max(left_depth, right_depth) + 1
+            return max(h_l, h_r) + 1
+        return height(root)
