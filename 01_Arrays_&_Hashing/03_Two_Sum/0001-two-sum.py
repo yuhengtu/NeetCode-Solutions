@@ -14,10 +14,11 @@ The space complexity is O(n), as the hash map can potentially store all elements
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        prevMap = {}  # val -> index
+        num2index = {}
+        for i, num in enumerate(nums):
+            diff = target - num
+            if diff in num2index:
+                return [i, num2index[diff]]
 
-        for i, n in enumerate(nums):
-            diff = target - n
-            if diff in prevMap:
-                return [prevMap[diff], i]
-            prevMap[n] = i
+            num2index[num] = i
+        
