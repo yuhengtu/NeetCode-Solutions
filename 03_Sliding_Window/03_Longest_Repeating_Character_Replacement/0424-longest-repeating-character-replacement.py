@@ -14,7 +14,7 @@ The space complexity is O(k), where k is the maximum number of distinct characte
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        l, r = 0, 0
+        l = 0
         max_len = 0
         char2freq = {}
         max_freq = 0
